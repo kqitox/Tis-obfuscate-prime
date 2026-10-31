@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071a2b">
+<title>Lua Encoder VIP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">L</span><span>Lua Encoder <b>VIP</b></span></a>
+    <div class="status"><span class="pulse"></span> Server ready</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span>✦</span> SCRIPT TOOLKIT</div>
+      <h1>Protect your <span>Lua scripts.</span></h1>
+      <p>Chỉnh sửa, mã hóa và tạo Raw Link cho script Lua của bạn trong một nơi.</p>
+    </section>
+
+    <section class="workspace">
+      <div class="panel editor-panel">
+        <div class="panel-head">
+          <div class="head-title"><span class="file-icon">‹›</span><div><strong>Lua Editor</strong><small id="fileLabel">script.lua</small></div></div>
+          <div class="head-actions">
+            <button class="icon-btn" id="uploadBtn" title="Upload file">↑</button>
+            <input id="fileInput" type="file" accept=".lua,.luau,.txt" hidden>
+            <button class="icon-btn" id="clearBtn" title="Clear editor">⌫</button>
+          </div>
+        </div>
+        <div class="editor-wrap">
+          <div class="line-numbers" id="lineNumbers">1</div>
+          <textarea id="source" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Lua source code" placeholder="-- Paste your Lua code here&#10;print('Hello, Lua!')"></textarea>
+        </div>
+        <div class="editor-foot"><span id="sourceStats">0 lines · 0 bytes</span><button class="text-btn" id="copySource">Copy source</button></div>
+      </div>
+
+      <div class="panel options-panel">
+        <div class="panel-head"><div><strong>Encoder settings</strong><small>Configure your output</small></div><span class="pill">VIP</span></div>
+        <div class="option-block">
+          <label>Protection mode</label>
+          <div class="mode-grid">
+            <button class="mode active" data-mode="light"><span>◈</span><b>Basic</b><small>Fast · Light</small></button>
+            <button class="mode" data-mode="standard"><span>◆</span><b>Standard</b><small>Balanced</small></button>
+          </div>
+          <p class="hint">Mã hóa XOR + Base64 ở chế độ client-side. Chỉ làm rối nội dung, không phải bảo vệ tuyệt đối.</p>
+        </div>
+        <div class="option-block">
+          <label>Output actions</label>
+          <button class="primary-btn" id="encodeBtn"><span>✧</span> Encode Lua</button>
+          <button class="secondary-btn" id="downloadBtn">↓ Download output</button>
+          <button class="secondary-btn" id="copyOutput">▣ Copy output</button>
+        </div>
+        <div class="option-block">
+          <label>Raw hosting</label>
+          <button class="primary-btn" id="hostBtn"><span>↗</span> Create Raw Link</button>
+          <div class="result-box hidden" id="resultBox">
+            <div class="result-label">RAW URL</div><div class="result-line"><input id="rawUrl" readonly><button class="mini-btn" data-copy="rawUrl">Copy</button></div>
+            <div class="result-label">LOADSTRING</div><div class="result-line"><input id="loadstring" readonly><button class="mini-btn" data-copy="loadstring">Copy</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel output-panel">
+      <div class="panel-head">
+        <div class="head-title"><span class="output-icon">⌁</span><div><strong>Encoded output</strong><small id="outputLabel">Output will appear here</small></div></div>
+        <span class="pill green" id="outputBadge">READY</span>
+      </div>
+      <textarea id="output" spellcheck="false" readonly placeholder="Encoded Lua output will appear here..."></textarea>
+      <div class="editor-foot"><span id="outputStats">0 lines · 0 bytes</span><span class="secure-note">● Local encoder</span></div>
+    </section>
+
+    <section class="panel library-panel">
+      <div class="panel-head"><div><strong>Recent hosted scripts</strong><small>Your saved Raw links</small></div><button class="text-btn" id="refreshLibrary">Refresh</button></div>
+      <div id="libraryList" class="library-list"><div class="empty">Chưa có script nào được lưu.</div></div>
+    </section>
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+  <footer>Lua Encoder VIP <span>•</span> Built for your Lua workflow</footer>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
