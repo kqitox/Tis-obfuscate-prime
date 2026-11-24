@@ -1,74 +1,4 @@
-local Features = {}
-local blackScreen, blackScreen2, HttpService, rejectWhitelist, nextEntry2, nextEntry3, nextEntry
-local logPrefix, hasEntry, entryKey, hasEntry2, entryValue, entryKey2, hasEntry3, entryValue2
-local result, entryKey3, hasEntry4, entryValue3, entryKey4, hasEntry5, entryValue4, entryKey5
-local hasEntry6, entryValue5, entryKey6, hasEntry7, entryValue6, entryKey7, hasEntry8, entryKey8
-local entryKey9, hasEntry9, entryValue7, entryKey10, hasEntry10, entryValue8, entryKey11, hasEntry11
-local entryValue9, entryKey12, hasEntry12, entryValue10, hasEntry13, entryKey13, hasEntry14
-local entryKey14, entryValue11, hasEntry15, hasEntry22, hasEntry32, hasEntry42, entryValue22
-local entryValue32, entryKey15, entryValue42, entryValue52, entryKey22, result2, createToggle
-local createToggle2, tweenService
-local Runtime = {}
-
-local function createIterator(iterator, state, control)
-    return coroutine.wrap(function()
-        for key, value in iterator, state, control do
-            coroutine.yield(true, key, value)
-        end
-    end)
-end
-
-Runtime.iterationResults = {}
-do
-    Runtime.features = {}
-
-    -- Verify whitelist session
-    function Features.verifyWhitelistSession()
-        local sharedState, sharedState2, sharedState3, sharedState4, sharedState5, sharedState6 = {}, {}, {}, {}, {}, {}
-        Runtime.updateWhitelistStatus("Verifying whitelist...")
-        os.clock()
-        sharedState.value = tostring(os.time())
-        sharedState2.value = Runtime.encodeHex(289181186, Runtime.transformWhitelistField(
-            "c6949ccd512754b94f27f4029fc0acc15de67945a0d401721f1c2abe46c4a8c3",
-            "key",
-            "1",
-            Runtime.whitelistKey
-        ))
-        sharedState3.value = Runtime.encodeHex(Runtime.guardKey20 + 428703842, Runtime.transformWhitelistField(
-            "c6949ccd512754b94f27f4029fc0acc15de67945a0d401721f1c2abe46c4a8c3",
-            "hwid",
-            "2",
-            Runtime.hardwareId
-        ))
-        sharedState4.value = Runtime.encodeHex(289181186, Runtime.transformWhitelistField(
-            "c6949ccd512754b94f27f4029fc0acc15de67945a0d401721f1c2abe46c4a8c3",
-            "proof",
-            "3",
-            Runtime.whitelistKey .. ":" .. Runtime.hardwareId .. ":" .. sharedState.value
-        ))
-        local value = bit32.band(Runtime.guardKey20, Runtime.numberValue6)
-        sharedState5.value = Runtime.encodeHex(Runtime.guardState18 - 872440572, Runtime.transformWhitelistField(
-            "c6949ccd512754b94f27f4029fc0acc15de67945a0d401721f1c2abe46c4a8c3",
-            "name",
-            "4",
-            Runtime.name
-        ))
-        sharedState6.value = Runtime.encodeHex(
-            value + 196051042,
-            Runtime.transformWhitelistField("c6949ccd512754b94f27f4029fc0acc15de67945a0d401721f1c2abe46c4a8c3", "version", "5", "5.0")
-        )
-        Runtime.guardKey = 4201837151
-        local value2, value3, value4 = Runtime.requestWithTimeout({
-            Url = "https://banana-hub.xyz/api/v4/vrf" .. "?k=" .. sharedState2.value .. "&w=" .. sharedState3.value .. "&p=" .. sharedState4.value .. "&n=" .. sharedState5.value .. "&v=" .. sharedState6.value .. "&t=" .. sharedState.value .. "&fast=1",
-            Method = "GET",
-            Headers = {Accept = "application/json"},
-        }, 15)
-        Runtime.verificationResponse = value3
-        Runtime.verificationError = value4
-        return sharedState, sharedState2, sharedState3, sharedState4, sharedState5, sharedState6, value, value2, value3, value4, value2
-    end
-
-    -- Initialize settings
+     -- Initialize settings
     function Features.initializeSettings()
         local genv = getgenv()
         local genv2 = getgenv()
@@ -73723,6 +73653,61 @@ return ebgzqifrwa, lebidlyjyf
                                                 result2.CreateNoti({
                                                     Title = "Banana Cat Hub",
                                                     Desc = "Turn On Attack Dough King Plz",
+                                                    ShowTime = 5,
+                                                })
+                                            end
+                                            SaveSettings("Hop Find Dough King", inputValue)
+                                        end)
+                                        BossDarkbeardSection = stackFarmMain.CreateSection("Boss Darkbeard")
+                                        local data = {}
+                                        local value = table.pack(bit32.band(Runtime.guardState45, 4294967295))
+                                        local value2 = table.pack(bit32.band(Runtime.guardKey48, 4294967295))
+                                        local value3 = table.pack(bit32.band(value[1], 65535))
+                                        local value4 = table.pack(bit32.rshift(value[1], 16))
+                                        local value5 = table.pack(bit32.band(value2[1], 65535))
+                                        bit32.band(value3[1] * value5[1] + bit32.lshift(bit32.band(
+                                            value3[1] * bit32.rshift(value2[1], 16) + value4[1] * value5[1],
+                                            65535
+                                        ), 16), 4294967295)
+                                        data.Title = "Attack Darkbeard"
+                                        data.Desc = nil
+                                        Runtime.value770, Runtime.value771, Runtime.value772, Runtime.value773, Runtime.value774, Runtime.value775 = data, value, value2, value3, value4, value5
+                                    end
+                                    return Runtime.localPlayer3()
+                                end
+                                Runtime.value777 = tostring
+                                Runtime.statusCode = Runtime.verificationResponse.StatusCode
+                                if not Runtime.verificationResponse.StatusCode then
+                                    Runtime.statusCode = "unknown"
+                                end
+                                return rejectWhitelist("Invalid server response format (HTTP " .. Runtime.value777(Runtime.statusCode) .. ").")
+                            end
+                            if Runtime.verificationError ~= "timeout" then
+                                Runtime.textValue2 = "Failed to connect to Authorization Server."
+                            else
+                                Runtime.textValue2 = "Authorization Server timed out. Please try again."
+                            end
+                            return rejectWhitelist(Runtime.textValue2)
+                        end
+                        return rejectWhitelist("A whitelist key is required.")
+                    end
+                end
+                return rejectWhitelist("A whitelist key is required.")
+            end
+            return rejectWhitelist("This executor does not support HTTP requests.")
+        end
+    end
+    if type(Runtime.genv6.notifyLua) ~= "function" then
+        if not (type(Runtime.genv6.notify) ~= "function") then
+            pcall(Runtime.genv6.notify, "Chuoi Hub", "Whitelist đã chạy trước đó, không chạy lại lần 2.", 5)
+        end
+    else
+        pcall(Runtime.genv6.notifyLua, "Whitelist đã chạy trước đó, không chạy lại lần 2.", "Chuoi Hub", 5)
+    end
+    print("[Chuoi Hub] Whitelist is already active in this session.")
+    return
+end
+ttack Dough King Plz",
                                                     ShowTime = 5,
                                                 })
                                             end
